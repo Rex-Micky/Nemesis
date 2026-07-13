@@ -1,0 +1,130 @@
+# ============================================================
+#  Nemesis  —  by Rex's Studio (studio.rexmicky.dev)
+#  The monster that kills you becomes your named rival. It
+#  survives, hunts you, and levels up every time it kills you
+#  again. Slay it to claim revenge loot.
+#
+#  Everything below is editable. Change anything and run
+#  /nemesis reload — no restart needed.
+# ============================================================
+
+# % chance that a mob which kills you becomes your nemesis.
+promote-chance: 100
+
+# The highest rank a nemesis can reach. Raise it as high as you like —
+# stats keep scaling by the formulas below, and any level without its own
+# 'levels' block inherits the highest block you defined.
+max-level: 5
+
+glowing: true        # nemesis glows through walls (easier to hunt down)
+fire-immune: true    # won't burn away in sunlight/lava — it stays a real threat
+
+# The nemesis actively hunts its owner.
+hunt:
+  enabled: true
+  range: 40          # within this many blocks it locks onto you
+  warn: true
+  warn-range: 18     # action-bar warning when it's this close
+
+# Only these mob types can become a nemesis.
+eligible-mobs:
+  - ZOMBIE
+  - HUSK
+  - DROWNED
+  - ZOMBIE_VILLAGER
+  - SKELETON
+  - STRAY
+  - BOGGED
+  - WITHER_SKELETON
+  - SPIDER
+  - CAVE_SPIDER
+  - PILLAGER
+  - VINDICATOR
+  - PIGLIN_BRUTE
+  - ZOMBIFIED_PIGLIN
+  - WITCH
+  - RAVAGER
+  - VEX
+  - BLAZE
+
+# --- Stat scaling ---------------------------------------------------------
+# Applied on top of each mob's OWN natural stats. e.g. health per-level 0.6
+# means a nemesis has +60% max health per level (Lv.3 zombie = 20 x (1+1.8)).
+scaling:
+  health:
+    per-level: 0.6
+  damage:
+    per-level: 0.4
+  speed:
+    per-level: 0.06    # +6% movement speed per level beyond Lv.1
+    cap: 1.25          # never faster than 1.25x the mob's natural speed
+
+# --- Per-level abilities --------------------------------------------------
+# Give each level potion effects, armour/weapons and knockback resistance.
+#   effects:   list of "TYPE:amplifier"  (amplifier 0 = level I, 1 = level II)
+#   equipment: any of helmet / chestplate / leggings / boots / weapon
+# Add more levels (6, 7, 8...) and raise max-level to match. Levels you don't
+# define here inherit the highest one you did.
+levels:
+  1: {}
+  2: {}
+  3:
+    knockback-resistance: 0.6
+    effects: ["RESISTANCE:0"]
+    equipment:
+      helmet: IRON_HELMET
+  4:
+    knockback-resistance: 0.6
+    effects: ["RESISTANCE:0", "REGENERATION:0", "STRENGTH:0"]
+    equipment:
+      helmet: IRON_HELMET
+      weapon: IRON_SWORD
+  5:
+    knockback-resistance: 0.8
+    effects: ["RESISTANCE:1", "REGENERATION:0", "STRENGTH:1", "SPEED:0"]
+    equipment:
+      helmet: DIAMOND_HELMET
+      chestplate: DIAMOND_CHESTPLATE
+      weapon: DIAMOND_SWORD
+
+# --- Revenge rewards ------------------------------------------------------
+# What you get for slaying your nemesis.
+revenge:
+  xp-base: 20
+  xp-per-level: 15
+  # Each drop = amount + (per-level x nemesis level). Add as many as you like.
+  drops:
+    - { material: DIAMOND, amount: 0, per-level: 2 }
+  trophy:
+    enabled: true
+    # A named keepsake. Default is a player head: decorative, uncraftable, and
+    # worthless as an ingredient — a pure trophy, not a farmable resource.
+    material: PLAYER_HEAD
+    name: "&6Trophy of {name}"
+    lore:
+      - "&7Slain by {owner}"
+      - "&8A nemesis vanquished."
+
+broadcast:
+  on-rise: false
+  on-levelup: false
+  on-revenge: true
+
+# & colour codes. Placeholders in {braces}.
+messages:
+  prefix: "&8[&cNemesis&8]&r "
+  rise: "&cA nemesis has risen against you: {name}&c. It will hunt you until one of you falls."
+  rise-broadcast: "&c{name} &7has risen as a nemesis against &c{owner}&7!"
+  levelup: "&4{name} &cgrows stronger and hunts you still... &7(Lv.{level})"
+  levelup-broadcast: "&c{owner}&7's nemesis grew stronger: {name}"
+  revenge: "&aYou have slain your nemesis, {name}&a! Vengeance is yours."
+  revenge-broadcast: "&e⚔ &c{owner} &7has slain their nemesis, {name}&7!"
+  lost-other: "&7Your nemesis {name} &7was slain by another. The grudge dies with it."
+  info-none: "&7You have no nemesis. Die to a monster and it may rise against you..."
+  info-header: "&8&m----&r &cYour Nemesis &8&m----"
+  info-name: "&7Name: {name}"
+  info-level: "&7Level: &f{level}"
+  info-mob: "&7Type: &f{mob}"
+  info-seen: "&7Last seen: &f{world} {x},{y},{z} &7({distance})"
+  info-tip: "&7Hunt it down to claim your revenge."
+  near-warn: "&c⚠ Your nemesis {name} &cis near..."

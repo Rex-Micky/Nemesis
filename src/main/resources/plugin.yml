@@ -1,0 +1,21 @@
+name: Nemesis
+version: '${project.version}'
+main: dev.rexmicky.nemesis.NemesisPlugin
+api-version: '1.21'
+authors: [Rex]
+website: https://studio.rexmicky.dev
+description: The mob that kills you becomes your named, leveling rival. Hunt it down for revenge.
+
+commands:
+  nemesis:
+    description: Inspect and track your nemesis.
+    usage: /nemesis <info|locate|list|reload>
+    aliases: [nem]
+
+permissions:
+  nemesis.use:
+    description: Inspect and locate your own nemesis.
+    default: true
+  nemesis.admin:
+    description: List all nemeses and reload the config.
+    default: op
