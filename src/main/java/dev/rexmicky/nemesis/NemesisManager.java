@@ -219,11 +219,11 @@ public class NemesisManager {
 
         // Scale from the mob's OWN natural stats (captured once), never the attribute's
         // generic default, which differs for movement speed (0.7 vs a zombie's 0.23).
-        scaleAttr(mob, Attribute.MAX_HEALTH, keyOrigHealth, 1.0 + cfg.getDouble("scaling.health.per-level", 0.6) * lvl);
-        scaleAttr(mob, Attribute.ATTACK_DAMAGE, keyOrigDamage, 1.0 + cfg.getDouble("scaling.damage.per-level", 0.4) * lvl);
-        scaleAttr(mob, Attribute.MOVEMENT_SPEED, keyOrigSpeed,
+        scaleAttr(mob, Compat.MAX_HEALTH, keyOrigHealth, 1.0 + cfg.getDouble("scaling.health.per-level", 0.6) * lvl);
+        scaleAttr(mob, Compat.ATTACK_DAMAGE, keyOrigDamage, 1.0 + cfg.getDouble("scaling.damage.per-level", 0.4) * lvl);
+        scaleAttr(mob, Compat.MOVEMENT_SPEED, keyOrigSpeed,
                 Math.min(cfg.getDouble("scaling.speed.cap", 1.25), 1.0 + cfg.getDouble("scaling.speed.per-level", 0.06) * (lvl - 1)));
-        AttributeInstance hp = mob.getAttribute(Attribute.MAX_HEALTH);
+        AttributeInstance hp = Compat.MAX_HEALTH == null ? null : mob.getAttribute(Compat.MAX_HEALTH);
         if (hp != null) mob.setHealth(hp.getValue());
 
         applyLevelAbilities(mob, lvl);
@@ -231,6 +231,7 @@ public class NemesisManager {
 
     /** Scale an attribute from the mob's own natural base value, captured once on promotion. */
     private void scaleAttr(LivingEntity e, Attribute a, NamespacedKey origKey, double factor) {
+        if (a == null) return;                        // attribute name not present on this server version
         AttributeInstance inst = e.getAttribute(a);
         if (inst == null) return; // e.g. skeletons have no attack-damage attribute
         Double orig = e.getPersistentDataContainer().get(origKey, PersistentDataType.DOUBLE);
@@ -249,7 +250,8 @@ public class NemesisManager {
         }
 
         ConfigurationSection block = levelBlock(lvl);
-        AttributeInstance kb = mob.getAttribute(Attribute.KNOCKBACK_RESISTANCE);
+        AttributeInstance kb = Compat.KNOCKBACK_RESISTANCE == null
+                ? null : mob.getAttribute(Compat.KNOCKBACK_RESISTANCE);
         if (kb != null) kb.setBaseValue(block != null ? block.getDouble("knockback-resistance", 0.0) : 0.0);
 
         if (block != null) {

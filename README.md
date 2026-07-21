@@ -1,6 +1,6 @@
 # Nemesis
 
-![Minecraft](https://img.shields.io/badge/Minecraft-1.21.x-brightgreen)
+![Minecraft](https://img.shields.io/badge/Minecraft-1.20.6--1.21.x-brightgreen)
 ![Platform](https://img.shields.io/badge/platform-Spigot%20%7C%20Paper-orange)
 ![Java](https://img.shields.io/badge/Java-21%2B-blue)
 ![Version](https://img.shields.io/badge/version-1.0.0-informational)
@@ -161,6 +161,14 @@ mvn clean package
 ```
 
 Only standard Bukkit APIs are used, so the built jar runs on both Spigot and Paper.
+
+## Compatibility
+
+Requires **Java 21+** (the runtime Minecraft itself requires from 1.20.5 onward).
+
+Automatically verified by booting a real server per version and exercising the plugin in-game on:
+**1.20.6**, **1.21.1**, **1.21.4** and **1.21.11** — all loading cleanly with no errors. Versions
+between those are expected to work but have not been individually tested.
 
 ## Roadmap
 

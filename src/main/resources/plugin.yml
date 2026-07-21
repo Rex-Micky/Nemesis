@@ -1,7 +1,7 @@
 name: Nemesis
 version: '${project.version}'
 main: dev.rexmicky.nemesis.NemesisPlugin
-api-version: '1.21'
+api-version: '1.20'
 authors: [Rex]
 website: https://studio.rexmicky.dev
 description: The mob that kills you becomes your named, leveling rival. Hunt it down for revenge.
