@@ -37,7 +37,7 @@ public class NemesisListener implements Listener {
             if (mobOwner.equals(victim.getUniqueId())) mgr().levelUp(victim, mob);
             return;
         }
-        // Killed by an ordinary mob — maybe a nemesis is born.
+        // Killed by an ordinary mob - maybe a nemesis is born.
         if (mgr().getByOwner(victim.getUniqueId()) != null) return; // one nemesis at a time
         if (!mgr().isEligible(mob.getType())) return;
         if (!mgr().rollChance()) return;

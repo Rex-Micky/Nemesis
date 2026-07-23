@@ -22,7 +22,7 @@ public class NemesisPlugin extends JavaPlugin {
         // Nemeses hunt their owners.
         getServer().getScheduler().runTaskTimer(this, manager::huntTick, 40L, 40L);
 
-        getLogger().info("Nemesis enabled — your rivals await.");
+        getLogger().info("Nemesis enabled - your rivals await.");
     }
 
     @Override
@@ -32,7 +32,7 @@ public class NemesisPlugin extends JavaPlugin {
 
     public NemesisManager getManager() { return manager; }
 
-    // --- messaging -----------------------------------------------------------
+    // Messaging
 
     public String format(String key, Object... placeholders) {
         String raw = getConfig().getString("messages." + key, "");

@@ -1,23 +1,23 @@
 # ============================================================
-#  Nemesis  —  by Rex's Studio (studio.rexmicky.dev)
+#  Nemesis - by Rex's Studio (studio.rexmicky.dev)
 #  The monster that kills you becomes your named rival. It
 #  survives, hunts you, and levels up every time it kills you
 #  again. Slay it to claim revenge loot.
 #
 #  Everything below is editable. Change anything and run
-#  /nemesis reload — no restart needed.
+#  /nemesis reload - no restart needed.
 # ============================================================
 
 # % chance that a mob which kills you becomes your nemesis.
 promote-chance: 100
 
-# The highest rank a nemesis can reach. Raise it as high as you like —
+# The highest rank a nemesis can reach. Raise it as high as you like - 
 # stats keep scaling by the formulas below, and any level without its own
 # 'levels' block inherits the highest block you defined.
 max-level: 5
 
 glowing: true        # nemesis glows through walls (easier to hunt down)
-fire-immune: true    # won't burn away in sunlight/lava — it stays a real threat
+fire-immune: true    # won't burn away in sunlight/lava - it stays a real threat
 
 # The nemesis actively hunts its owner.
 hunt:
@@ -98,7 +98,7 @@ revenge:
   trophy:
     enabled: true
     # A named keepsake. Default is a player head: decorative, uncraftable, and
-    # worthless as an ingredient — a pure trophy, not a farmable resource.
+    # worthless as an ingredient - a pure trophy, not a farmable resource.
     material: PLAYER_HEAD
     name: "&6Trophy of {name}"
     lore:

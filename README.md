@@ -11,11 +11,11 @@
 
 Inspired by the acclaimed **Nemesis system** from *Shadow of Mordor*, reimagined for Minecraft servers.
 Ordinary deaths become an ongoing, personal grudge: the mob that beat you is promoted into a named,
-glowing rival that remembers you, tracks you down, and levels up with every kill — until you finally
+glowing rival that remembers you, tracks you down, and levels up with every kill - until you finally
 hunt it down and settle the score for a hard-earned reward.
 
 Every rivalry is unique, persists across restarts, and is tuned entirely through a deep, friendly
-config — from stat curves to per-level abilities to the exact reward you earn.
+config - from stat curves to per-level abilities to the exact reward you earn.
 
 ---
 
@@ -39,7 +39,7 @@ config — from stat curves to per-level abilities to the exact reward you earn.
 
 ## How it works
 
-1. **A monster kills you.** Instead of despawning, it's promoted to your personal **Nemesis** — given a
+1. **A monster kills you.** Instead of despawning, it's promoted to your personal **Nemesis** - given a
    name and title (*Grishnak the Cruel*), boosted stats, a glowing outline, immunity to sunlight, and it
    is marked never to despawn.
 2. **It hunts you.** Whenever you're within range, it locks onto you and gives chase; you get an
@@ -56,7 +56,7 @@ Only one nemesis exists per player at a time, so the rivalry stays personal and 
 | Level | Health | Damage | Speed | Added abilities |
 |:---:|:---:|:---:|:---:|---|
 | 1 | ×1.6 | ×1.4 | normal | Named, glowing, fireproof, persistent |
-| 2 | ×2.2 | ×1.8 | +6% | — |
+| 2 | ×2.2 | ×1.8 | +6% | - |
 | 3 | ×2.8 | ×2.2 | +12% | Resistance I, knockback resistance, iron helmet |
 | 4 | ×3.4 | ×2.6 | +18% | Regeneration I, Strength I, iron sword |
 | 5 | ×4.0 | ×3.0 | +24% | Resistance II, Strength II, Speed I, full diamond kit |
@@ -71,11 +71,11 @@ Only one nemesis exists per player at a time, so the rivalry stays personal and 
 
 ## Commands
 
-Base command: `/nemesis` — alias `/nem`.
+Base command: `/nemesis` - alias `/nem`.
 
 | Command | Description |
 |---|---|
-| `/nemesis info` | View your current nemesis — name, level, type, last-seen location |
+| `/nemesis info` | View your current nemesis - name, level, type, last-seen location |
 | `/nemesis locate` | Where your nemesis was last seen, and how far away |
 | `/nemesis list` | (admin) All active nemeses on the server |
 | `/nemesis reload` | (admin) Reload the configuration |
@@ -93,7 +93,7 @@ Everything below is editable; run `/nemesis reload` to apply without a restart.
 
 ```yaml
 promote-chance: 100     # % chance a mob that kills you becomes your nemesis
-max-level: 5            # raise as high as you like — stats keep scaling
+max-level: 5            # raise as high as you like - stats keep scaling
 glowing: true           # nemesis glows through walls
 fire-immune: true       # won't burn away in sunlight/lava
 hunt:
@@ -118,7 +118,7 @@ scaling:
 ### Per-level abilities
 
 Give each level potion effects, gear and knockback resistance. **Add more levels (6, 7, 8…)** and raise
-`max-level` to match — any level you don't define inherits the highest one you did.
+`max-level` to match - any level you don't define inherits the highest one you did.
 
 ```yaml
 levels:
@@ -144,7 +144,7 @@ revenge:
     - { material: DIAMOND, amount: 0, per-level: 2 }
   trophy:
     enabled: true
-    material: PLAYER_HEAD   # a decorative, uncraftable keepsake — not a farmable resource
+    material: PLAYER_HEAD   # a decorative, uncraftable keepsake - not a farmable resource
     name: "&6Trophy of {name}"
     lore:
       - "&7Slain by {owner}"
@@ -167,13 +167,13 @@ Only standard Bukkit APIs are used, so the built jar runs on both Spigot and Pap
 Requires **Java 21+** (the runtime Minecraft itself requires from 1.20.5 onward).
 
 Automatically verified by booting a real server per version and exercising the plugin in-game on:
-**1.20.6**, **1.21.1**, **1.21.4** and **1.21.11** — all loading cleanly with no errors. Versions
+**1.20.6**, **1.21.1**, **1.21.4** and **1.21.11** - all loading cleanly with no errors. Versions
 between those are expected to work but have not been individually tested.
 
 ## Roadmap
 
 - 👹 Nemesis **minions** it can summon at high level.
-- 🎭 Multiple simultaneous nemeses per player — a rogues' gallery.
+- 🎭 Multiple simultaneous nemeses per player - a rogues' gallery.
 - 📖 A **grudge book** GUI showing your rivalry history and past trophies.
 - 📊 Optional **boss bar** when your nemesis is nearby.
 
@@ -184,4 +184,4 @@ between those are expected to work but have not been individually tested.
 
 ## License
 
-Released under the [MIT License](LICENSE) — © 2026 Rex Micky · Rex's Studio.
+Released under the [MIT License](LICENSE) - © 2026 Rex Micky · Rex's Studio.

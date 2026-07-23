@@ -81,7 +81,7 @@ public class NemesisManager {
         this.eligible = set;
     }
 
-    // --- identity checks -----------------------------------------------------
+    // Identity checks
 
     public UUID ownerOf(Entity entity) {
         if (entity == null) return null;
@@ -98,7 +98,7 @@ public class NemesisManager {
         return ThreadLocalRandom.current().nextInt(100) < plugin.getConfig().getInt("promote-chance", 100);
     }
 
-    // --- lifecycle -----------------------------------------------------------
+    // Lifecycle
 
     public void createNemesis(Player victim, LivingEntity mob) {
         NemesisData data = new NemesisData(victim.getUniqueId(), victim.getName(), mob.getUniqueId(),
@@ -131,7 +131,7 @@ public class NemesisManager {
         save();
 
         victim.sendTitle(ChatColor.DARK_RED + "YOUR NEMESIS GROWS STRONGER",
-                ChatColor.RED + data.getBaseName() + " — Lv." + data.getLevel(), 10, 70, 20);
+                ChatColor.RED + data.getBaseName() + " - Lv." + data.getLevel(), 10, 70, 20);
         victim.playSound(victim.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1f, 1f);
         plugin.send(victim, "levelup", "name", displayName(data), "level", data.getLevel());
         if (plugin.getConfig().getBoolean("broadcast.on-levelup", false)) {
@@ -197,7 +197,7 @@ public class NemesisManager {
         }
     }
 
-    // --- trait application (all config-driven) -------------------------------
+    // Trait application (all config-driven)
 
     public void applyTraits(LivingEntity mob, NemesisData data) {
         int lvl = data.getLevel();
@@ -214,7 +214,7 @@ public class NemesisManager {
         pdc.set(keyLevel, PersistentDataType.INTEGER, lvl);
         pdc.set(keyBase, PersistentDataType.STRING, data.getBaseName());
 
-        // Never let a baby mob become the nemesis — inherently too fast and too hard to see.
+        // Never let a baby mob become the nemesis - inherently too fast and too hard to see.
         if (mob instanceof Zombie zombie) zombie.setBaby(false);
 
         // Scale from the mob's OWN natural stats (captured once), never the attribute's
@@ -346,7 +346,7 @@ public class NemesisManager {
         return def;
     }
 
-    // --- hunting task --------------------------------------------------------
+    // Hunting task
 
     public void huntTick() {
         if (!plugin.getConfig().getBoolean("hunt.enabled", true)) return;
@@ -372,7 +372,7 @@ public class NemesisManager {
         }
     }
 
-    // --- persistence ---------------------------------------------------------
+    // Persistence
 
     public void load() {
         byOwner.clear();
